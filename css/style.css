@@ -1254,8 +1254,8 @@ tr:nth-child(1) {
     left: 0;
 }
 
-.ymaps-layers-pane {
-	filter: grayscale(1);
+ymaps {
+	filter: grayscale(100%);
 	-ms-filter: grayscale(1);
 	-webkit-filter: grayscale(1);
 	-moz-filter: grayscale(1);
