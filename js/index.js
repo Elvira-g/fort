@@ -55,11 +55,13 @@ const equipment = [
 
 
 const contactModal = document.querySelector('.modal-contact-block');
+const contactModalWindow = document.querySelector('.modal-contact-window');
 const contactModalText = document.querySelector('.modal-contact-text-block');
 const contactModalClose = document.querySelector('.modal-contact-close');
 const contactBtn = document.querySelectorAll('.call-btn');
 
 const equipmentModal = document.querySelector('.modal-equipment-block');
+const equipmentModalWindow = document.querySelector('.modal-equipment-window');
 const equipmentModalClose = document.querySelector('.modal-equipment-close');
 const equipmentInfoBtn = document.querySelectorAll('.equipment-info');
 const equipmentTitle = document.querySelector('.modal-equipment-title');
@@ -75,23 +77,27 @@ const bannerClose = document.querySelector('.banner-close');
 
 const callForm = document.querySelector('.call-form');
 
+const tel = document.querySelector('.tel');
+
 const contactsForm = document.querySelector('.contacts-form');
+
+
 
 
 window.addEventListener('load', () => {
     showFaq();
     addFaqAction();
-})
-
-contactBtn.forEach((item) => {
+    contactBtn.forEach((item) => {
     item.addEventListener('click', () => {
+        contactModalWindow.style.animationName = 'modal';
         contactModal.style.display = 'flex';
         showForm();
     })
 })
 
 contactModalClose.addEventListener('click', () => {
-    contactModal.style.display = 'none';
+    contactModalWindow.style.animationName = 'modal-close';
+    setTimeout(() => contactModal.style.display = 'none', 400);
 })
 
 callForm.addEventListener('submit', function(e) {
@@ -108,11 +114,13 @@ contactsForm.addEventListener('submit', function(e) {
 
 
 equipmentModalClose.addEventListener('click', () => {
-    equipmentModal.style.display = 'none';
+    equipmentModalWindow.style.animationName = 'modal-close';
+    setTimeout(() => equipmentModal.style.display = 'none', 400);
 })
 
 equipmentInfoBtn.forEach((item) => {
     item.addEventListener('click', () => {
+        equipmentModalWindow.style.animationName = 'modal';
         equipmentModal.style.display = 'flex';
         showEquipment(item.dataset.equipment);
     })
@@ -121,19 +129,38 @@ equipmentInfoBtn.forEach((item) => {
 bannerClose.addEventListener('click', () => {
     bannerBlock.style.display = 'none';
 })
+})
+
+window.addEventListener('click', (e) => {
+    if(e.target == equipmentModal) {
+        equipmentModal.style.display = 'none';
+    }
+
+    if(e.target == contactModal) {
+        contactModal.style.display = 'none';
+    }
+})
+
+
 
 function showForm() {
     contactModalText.innerHTML = `
         <h2 class="modal-contact-title">Мы перезвоним вам!</h2>
         <form class="modal-contact-form">
             <input type="text" name="name" placeholder="ФИО" autocomplete="off">
-            <input type="tel" name="tel" placeholder="Мобильный телефон" autocomplete="off">
+            <input type="tel" name="tel" placeholder="Мобильный телефон" autocomplete="off" class="tel">
             <input id="policy-checkbox" type="checkbox" name="checkbox">
             <label for="policy-checkbox" class="contact-checkbox-label">Я принимаю условия обработки персональных данных</label>
             <button type="submit" class="btn-orange modal-contact-btn">Отправить</button>
         </form>
     `;
     const contactModalForm = document.querySelector('.modal-contact-form');
+    const phone_inputs = document.querySelectorAll('.tel');
+    for (let elem of phone_inputs) {
+        for (let ev of ['input', 'blur', 'focus']) {
+            elem.addEventListener(ev, eventCalllback);
+        }
+    }
     contactModalForm.addEventListener('submit', function(e) {
         e.preventDefault();
         showMassage('Спасибо за заказ!');
@@ -189,8 +216,9 @@ function showFaqText(id) {
     const faqText = document.querySelectorAll('.faq-item-text');
     faqText.forEach((item) => {
         if ( item.dataset.faq === id) {
+            item.style.maxHeight = item.scrollHeight + 13 + 'px';
             item.style.paddingTop = '13px';
-            item.style.height = 'auto';
+            // item.style.height = 'auto';
         }
     })
 }
@@ -199,8 +227,9 @@ function hideFaqText(id) {
     const faqText = document.querySelectorAll('.faq-item-text');
     faqText.forEach((item) => {
         if ( item.dataset.faq === id) {
+            item.style.maxHeight = null;
             item.style.paddingTop = '0';
-            item.style.height = '0';
+            // item.style.height = '0';
         }
     })
 }
@@ -215,8 +244,8 @@ function showEquipment(id) {
             let equip = item.description.equip;
             showEquipmentList(equip)
             let images = item.images;
-            showEquipmentSlider(images)
-            changeSliderImage(images);
+            showEquipmentSlider(images);
+            changeSliderImage();
         }
     }
 )}
@@ -236,12 +265,50 @@ function showEquipmentSlider(images) {
     }
 }
 
-function changeSliderImage(images) {
+function changeSliderImage() {
     const sliderItems = document.querySelectorAll('.modal-equipment-img-item');
-    sliderItems.forEach((item) => {
-        item.addEventListener('click', (e) => {
+    for (let i = 0; i < sliderItems.length; i++ ) {
+        sliderItems[0].style.filter = 'brightness(1)';
+        sliderItems[i].addEventListener('click', (e) => {
             const targetImg = e.target.dataset.image;
+            sliderItems.forEach((item) => {
+                if ( item.dataset.image === targetImg ) {
+                    item.style.filter = 'brightness(1)';
+                } else {
+                    item.style.filter = 'brightness(0.5)';
+                }
+            })
             equipmentImageMain.style.backgroundImage = `url(./assets/img/equipment/${targetImg}.jpg)`;
         })
-    })
+    }
+}
+
+
+function eventCalllback (e) {
+    let el = e.target,
+    clearVal = el.dataset.phoneClear,
+    pattern = el.dataset.phonePattern,
+    matrix_def = "+7(___) ___-__-__",
+    matrix = pattern ? pattern : matrix_def,
+    i = 0,
+    def = matrix.replace(/\D/g, ""),
+    val = e.target.value.replace(/\D/g, "");
+     
+    if (clearVal !== 'false' && e.type === 'blur') {
+        if (val.length < matrix.match(/([\_\d])/g).length) {
+            e.target.value = '';
+            return;
+        }
+    }
+    if (def.length >= val.length) val = def;
+    e.target.value = matrix.replace(/./g, function (a) {
+        return /[_\d]/.test(a) && i < val.length ? val.charAt(i++) : i >= val.length ? "" : a
+    });
+}
+
+const phone_inputs = document.querySelectorAll('.tel');
+for (let elem of phone_inputs) {
+    for (let ev of ['input', 'blur', 'focus']) {
+        elem.addEventListener(ev, eventCalllback);
+    }
 }
