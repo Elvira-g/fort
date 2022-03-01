@@ -1,3 +1,5 @@
+import equipment from './equipment.js';
+import modalSlider from './modal-slider.js';
 
 const faq = [
     {
@@ -14,42 +16,6 @@ const faq = [
         id: '3',
         title: 'Сколько времени занимает монтаж системы?',
         text: 'Если устройств из данного комплекта недостаточно, то их можно увеличить. Для того чтобы рассчитать стоимость необходимого вам комплекта охраны мы предлагаем оставить ваши данные и наши специалисты свяжутся с вами и сделают расчет индивидуально. Мы рекомендуем воспользоваться бесплатным выездом инженера.',
-    }
-]
-
-const equipment = [
-    {
-        id: '1',
-        name: 'Ajax',
-        description: {
-            text: 'Бренд Ajax Systems широко известен на рынке беспроводных элементов охранных систем. Оборудование бренда отличается высокой степень точности срабатывания и нашло применение в «умных домах» (Smart Home). Системы данного производителя имеют продуманный до мелочей дизайн, а потому могут вписываться как в классические, так и современные интерьеры, подходят для зданий и сооружений различного назначения и площади.',
-            equip: [
-                'Контрольная панель', 'Датчик движения', 'Датчик открытия', 'Брелок с тревожной кнопкой'
-            ],
-        },
-        images: ['ajax_1', 'ajax_2', 'ajax_3']
-    },
-    {
-        id: '2',
-        name: 'C.Nord',
-        description: {
-            text: 'Бюджетное решение для защиты квартиры. Бренд Ajax Systems широко известен на рынке беспроводных элементов охранных систем. Оборудование бренда отличается высокой степень точности срабатывания и нашло применение в «умных домах» (Smart Home). Системы данного производителя имеют продуманный до мелочей дизайн, а потому могут вписываться как в классические, так и современные интерьеры, подходят для зданий и сооружений различного назначения и площади.',
-            equip: [
-                'Контрольная панель', 'Датчик движения', 'Брелок с тревожной кнопкой'
-            ],
-        },
-        images: ['ajax_2', 'ajax_1', 'ajax_3']
-    },
-    {
-        id: '3',
-        name: 'Тревожная кнопка',
-        description: {
-            text: 'Устройство для защиты помещений и имущества от незаконного вторжения. Оборудование бренда отличается высокой степень точности срабатывания и нашло применение в «умных домах» (Smart Home). Системы данного производителя имеют продуманный до мелочей дизайн, а потому могут вписываться как в классические, так и современные интерьеры, подходят для зданий и сооружений различного назначения и площади.',
-            equip: [
-                'Контрольная панель', 'Датчик движения',
-            ],
-        },
-        images: ['ajax_3', 'ajax_2', 'ajax_1']
     }
 ]
 
@@ -81,7 +47,9 @@ const tel = document.querySelector('.tel');
 
 const contactsForm = document.querySelector('.contacts-form');
 
-
+const menuBtn = document.querySelector('.hamburger');
+const menuBlock = document.querySelector('.menu-block');
+const navBtn = document.querySelector('.nav-btn');
 
 
 window.addEventListener('load', () => {
@@ -92,43 +60,50 @@ window.addEventListener('load', () => {
         contactModalWindow.style.animationName = 'modal';
         contactModal.style.display = 'flex';
         showForm();
+        })
     })
-})
 
-contactModalClose.addEventListener('click', () => {
-    contactModalWindow.style.animationName = 'modal-close';
-    setTimeout(() => contactModal.style.display = 'none', 400);
-})
+    contactModalClose.addEventListener('click', () => {
+        contactModalWindow.style.animationName = 'modal-close';
+        setTimeout(() => contactModal.style.display = 'none', 400);
+    })
 
-callForm.addEventListener('submit', function(e) {
+    callForm.addEventListener('submit', function(e) {
     e.preventDefault();
     contactModal.style.display = 'flex';
     showMassage('Спасибо!');
-})
-
-contactsForm.addEventListener('submit', function(e) {
-    e.preventDefault();
-    contactModal.style.display = 'flex';
-    showMassage('Спасибо!');
-})
-
-
-equipmentModalClose.addEventListener('click', () => {
-    equipmentModalWindow.style.animationName = 'modal-close';
-    setTimeout(() => equipmentModal.style.display = 'none', 400);
-})
-
-equipmentInfoBtn.forEach((item) => {
-    item.addEventListener('click', () => {
-        equipmentModalWindow.style.animationName = 'modal';
-        equipmentModal.style.display = 'flex';
-        showEquipment(item.dataset.equipment);
     })
-})
 
-bannerClose.addEventListener('click', () => {
-    bannerBlock.style.display = 'none';
-})
+    contactsForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        contactModal.style.display = 'flex';
+        showMassage('Спасибо!');
+    })
+
+    equipmentModalClose.addEventListener('click', () => {
+        equipmentModalWindow.style.animationName = 'modal-close';
+        setTimeout(() => equipmentModal.style.display = 'none', 400);
+    })
+
+    equipmentInfoBtn.forEach((item) => {
+        item.addEventListener('click', () => {
+            equipmentModalWindow.style.animationName = 'modal';
+            equipmentModal.style.display = 'flex';
+            showEquipment(item.dataset.equipment);
+        })
+    })
+
+    bannerClose.addEventListener('click', () => {
+        bannerBlock.style.display = 'none';
+    })
+
+    menuBtn.addEventListener('click', function () {
+        if(this.classList.contains('is-active')){
+            closeMenuBtn(this);
+        } else {
+            openMenuBtn(this);
+        }
+    })
 })
 
 window.addEventListener('click', (e) => {
@@ -245,7 +220,9 @@ function showEquipment(id) {
             showEquipmentList(equip)
             let images = item.images;
             showEquipmentSlider(images);
+            showModalEquipmentSlider(images);
             changeSliderImage();
+            modalSlider();
         }
     }
 )}
@@ -265,6 +242,22 @@ function showEquipmentSlider(images) {
     }
 }
 
+function showModalEquipmentSlider(images) {
+    const modalSliderTrack = document.querySelector('.modal-equipment-slider-track');
+    const modalSliderPagBlock = document.querySelector('.modal-slider-pag-block');
+    modalSliderTrack.innerHTML = '';
+    modalSliderPagBlock.innerHTML = '';
+    for (let i = 0; i < images.length; i++) {
+        const slide = `
+        <div class="modal-slide" data-modSlide="${i}" style="background-image: url('./assets/img/equipment/${images[i]}.jpg')"><div>`
+        const pag = `
+        <div class="modal-slider-pag-item" data-modSlide=${i}></div>`;
+        modalSliderTrack.insertAdjacentHTML('beforeend', slide);
+        modalSliderPagBlock.insertAdjacentHTML('beforeend', pag);
+    }
+
+}
+
 function changeSliderImage() {
     const sliderItems = document.querySelectorAll('.modal-equipment-img-item');
     for (let i = 0; i < sliderItems.length; i++ ) {
@@ -282,7 +275,6 @@ function changeSliderImage() {
         })
     }
 }
-
 
 function eventCalllback (e) {
     let el = e.target,
@@ -304,6 +296,19 @@ function eventCalllback (e) {
     e.target.value = matrix.replace(/./g, function (a) {
         return /[_\d]/.test(a) && i < val.length ? val.charAt(i++) : i >= val.length ? "" : a
     });
+}
+
+function closeMenuBtn(btn) {
+    btn.classList.remove('is-active');
+    menuBlock.style.opacity = '0';
+    setTimeout(() => menuBlock.style.display = 'none', 400);
+}
+
+function openMenuBtn(btn) {
+    btn.classList.add('is-active');
+    menuBlock.style.display = 'block';
+    setTimeout(() => menuBlock.style.opacity = '1', 200);
+    
 }
 
 const phone_inputs = document.querySelectorAll('.tel');

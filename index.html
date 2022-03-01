@@ -39,6 +39,17 @@
                     <div class="modal-equipment-img-slider">
                     </div>
                 </div>
+                <div class="modal-equipment-img-block-mob">
+                    <div class="modal-equipment-slider">
+                        <div class="modal-equipment-slider-list">
+                            <div class="modal-equipment-slider-track">
+
+                            </div>
+                        </div>
+                        <div class="modal-slider-pag-block">
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -58,11 +69,22 @@
                         <li class="menu-item"><a href="#about" class="menu-item-link">О компании</a></li>
                         <li class="menu-item"><a href="#contacts" class="menu-item-link">Контакты</a></li>
                     </ul>
+                    <div class="container">
+                        <button class="btn-main call-btn nav-btn-mob">Заказать звонок</button>
+                    </div>
                 </div>
                 <div class="call-block">
                     <p class="call-number">+7 495 699-66-99</p>
-                    <button class="btn-main call-btn call-btn">Заказать звонок</button>
+                    <button class="btn-main call-btn nav-btn">Заказать звонок</button>
                 </div>
+                <div class="menu-btn-block">
+                    <div class="hamburger" id="hamburger-6">
+                        <span class="line"></span>
+                        <span class="line"></span>
+                        <span class="line"></span>
+                    </div>
+                    <div class="hamburger" id="hamburger-6">
+                    </div>
             </nav>
         </div>
     </header>
@@ -72,9 +94,9 @@
             <div class="container">
                 <h1 class="hero-title">Самая быстрая охрана квартир</h1>
                 <div class="hero-benefits-block">
-                    <div class="hero-benefits-item">Стоимость <br> от <span class="hero-benefits-text">890 ₽</span> в месяц</div>
+                    <div class="hero-benefits-item">Стоимость от <span class="hero-benefits-text">890 ₽</span> в месяц</div>
                     <div class="hero-benefits-item">Определим ближайший к вам экипаж. Расчетное время прибытия от <span class="hero-benefits-text">5 мин</span></div>
-                    <div class="hero-benefits-item">Ответственность <br> до <span class="hero-benefits-text">4 000 000 ₽</span> </div>
+                    <div class="hero-benefits-item">Ответственность до <span class="hero-benefits-text">4 000 000 ₽</span> </div>
                 </div>
                 <button class="btn-orange hero-btn call-btn">Оставить заявку</button>
             </div>
@@ -155,7 +177,7 @@
                         <ul class="section-list">
                             <li class="section-list-item">Время приезда 7 минут</li>
                             <li class="section-list-item">9 500 экипажей вневедомственной охраны Росгвардии в Москве и области</li>
-                            <li class="section-list-item">Материальная ответственность до 1 000 000 руб.</li>
+                            <li class="section-list-item">Материальная ответственность<br>до 1 000 000 руб.</li>
                             <li class="section-list-item">Управление системой со смартофна</li>
                         </ul>
                     </div>
@@ -230,51 +252,53 @@
             <div class="container">
                 <h2 class="section-title benefits-title">Преимущества</h2>
                 <p class="section-text">Внимание!!!  Нет причин заключать договор напрямую с гос. структурами. Они работают с определенным российским оборудованием, только если сами подключают клиента на пульт охраны. При этом сигналы они принимают от всех систем и не могут не приехать по тревоге от посреднической компании.</p>
-                <div class="benefits-table-block">
-                    <table class="benefits-table">
-                        <tr>
-                            <th></th>
-                            <th>Наша фирма</th>
-                            <th>Охранная компания</th>
-                            <th>Государственная охрана</th>
-                        </tr>
-                        <tr>
-                            <td class="first-column">Кто приедет по тревоге</td>
-                            <td>Росгвардия</td>
-                            <td>ЧОП</td>
-                            <td>Росгвардия</td>
-                        </tr>
-                        <tr>
-                            <td class="first-column">Время приезда</td>
-                            <td>15 мин</td>
-                            <td>15 мин</td>
-                            <td>Нет</td>
-                        </tr>
-                        <tr>
-                            <td class="first-column">Мат. ответственность</td>
-                            <td>до 1 млн</td>
-                            <td>до 1 млн</td>
-                            <td>Нет</td>
-                        </tr>
-                        <tr>
-                            <td class="first-column">Современное оборудование *</td>
-                            <td>Да</td>
-                            <td>Да</td>
-                            <td>Да</td>
-                        </tr>
-                        <tr>
-                            <td class="first-column">Поддержка 24/7</td>
-                            <td>Да</td>
-                            <td>Да</td>
-                            <td>Нет</td>
-                        </tr>
-                        <tr>
-                            <td class="first-column">Стоимость охраны</td>
-                            <td>890–6000</td>
-                            <td>1300–6500</td>
-                            <td>890–10000</td>
-                        </tr>
-                    </table>
+                <div class="benefits-scrollbar-block">
+                    <div class="benefits-table-block">
+                        <table class="benefits-table">
+                            <tr>
+                                <th></th>
+                                <th>Наша фирма</th>
+                                <th>Охранная компания</th>
+                                <th>Государственная охрана</th>
+                            </tr>
+                            <tr>
+                                <td class="first-column">Кто приедет по тревоге</td>
+                                <td>Росгвардия</td>
+                                <td>ЧОП</td>
+                                <td>Росгвардия</td>
+                            </tr>
+                            <tr>
+                                <td class="first-column">Время приезда</td>
+                                <td>15 мин</td>
+                                <td>15 мин</td>
+                                <td>Нет</td>
+                            </tr>
+                            <tr>
+                                <td class="first-column">Мат. ответственность</td>
+                                <td>до 1 млн</td>
+                                <td>до 1 млн</td>
+                                <td>Нет</td>
+                            </tr>
+                            <tr>
+                                <td class="first-column">Современное оборудование *</td>
+                                <td>Да</td>
+                                <td>Да</td>
+                                <td>Да</td>
+                            </tr>
+                            <tr>
+                                <td class="first-column">Поддержка 24/7</td>
+                                <td>Да</td>
+                                <td>Да</td>
+                                <td>Нет</td>
+                            </tr>
+                            <tr>
+                                <td class="first-column">Стоимость охраны</td>
+                                <td>890–6000</td>
+                                <td>1300–6500</td>
+                                <td>890–10000</td>
+                            </tr>
+                        </table>
+                    </div> 
                 </div>
                 <p class="section-text">* Фотофиксация тревог, управление со смартофна, беспроводные системы со стильным дизайном</p>
             </div>
@@ -329,6 +353,47 @@
                     <div class="clients-item"><img src="./assets/img/clients/16.svg" alt="" class="clients-item-img"></div>
                     <div class="clients-item"><img src="./assets/img/clients/17.svg" alt="" class="clients-item-img"></div>
                     <div class="clients-item"><img src="./assets/img/clients/18.svg" alt="" class="clients-item-img"></div>
+                </div>
+                <div class="clients-items-slider">
+                    <div class="clients-slider-list">
+                        <div class="clients-slider-track">
+                            <div class="slide" data-slide="1">
+                                <div class="clients-slider-item">
+                                    <div class="clients-item"><img src="./assets/img/clients/1.svg" alt="" class="clients-item-img"></div>
+                                    <div class="clients-item"><img src="./assets/img/clients/2.svg" alt="" class="clients-item-img"></div>
+                                    <div class="clients-item"><img src="./assets/img/clients/3.svg" alt="" class="clients-item-img"></div>
+                                    <div class="clients-item"><img src="./assets/img/clients/4.svg" alt="" class="clients-item-img"></div>
+                                    <div class="clients-item"><img src="./assets/img/clients/5.svg" alt="" class="clients-item-img"></div>
+                                    <div class="clients-item"><img src="./assets/img/clients/6.svg" alt="" class="clients-item-img"></div>
+                                </div>
+                            </div>
+                            <div class="slide" data-slide="2">
+                                <div class="clients-slider-item">
+                                    <div class="clients-item"><img src="./assets/img/clients/7.svg" alt="" class="clients-item-img"></div>
+                                    <div class="clients-item"><img src="./assets/img/clients/8.svg" alt="" class="clients-item-img"></div>
+                                    <div class="clients-item"><img src="./assets/img/clients/9.svg" alt="" class="clients-item-img"></div>
+                                    <div class="clients-item"><img src="./assets/img/clients/10.svg" alt="" class="clients-item-img"></div>
+                                    <div class="clients-item"><img src="./assets/img/clients/11.svg" alt="" class="clients-item-img"></div>
+                                    <div class="clients-item"><img src="./assets/img/clients/12.svg" alt="" class="clients-item-img"></div>
+                                </div>
+                            </div>
+                            <div class="slide" data-slide="3">
+                                <div class="clients-slider-item">
+                                    <div class="clients-item"><img src="./assets/img/clients/13.svg" alt="" class="clients-item-img"></div>
+                                    <div class="clients-item"><img src="./assets/img/clients/14.svg" alt="" class="clients-item-img"></div>
+                                    <div class="clients-item"><img src="./assets/img/clients/15.svg" alt="" class="clients-item-img"></div>
+                                    <div class="clients-item"><img src="./assets/img/clients/16.svg" alt="" class="clients-item-img"></div>
+                                    <div class="clients-item"><img src="./assets/img/clients/17.svg" alt="" class="clients-item-img"></div>
+                                    <div class="clients-item"><img src="./assets/img/clients/18.svg" alt="" class="clients-item-img"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="slider-pag-block">
+                        <div class="slider-pag-item slider-pag-item-active" data-slide="1"></div>
+                        <div class="slider-pag-item" data-slide="2"></div>
+                        <div class="slider-pag-item" data-slide="3"></div>
+                    </div>
                 </div>
             </div>
         </section>
@@ -391,9 +456,10 @@
                         <input type="text" name="name" placeholder="ФИО" autocomplete="off">
                         <input type="tel" name="tel" placeholder="Телефон" autocomplete="off" class="tel">
                         <input type="email" name="email" placeholder="Email" autocomplete="off">
+                        <p class="call-form-policy-text mobile-policy">Отправляя заявку, Вы даете согласие на обработку <a class="call-form-policy-link" href="#policy">персональных данных</a></p>
                         <button type="submit" class="btn-orange contacts-btn">Перезвоните мне</button>
                     </form>
-                    <p class="call-form-policy-text">Отправляя заявку, Вы даете согласие на обработку <a class="call-form-policy-link" href="#policy">персональных данных</a></p>
+                    <p class="call-form-policy-text desctop-policy">Отправляя заявку, Вы даете согласие на обработку <a class="call-form-policy-link" href="#policy">персональных данных</a></p>
                 </div>
             </div>
         </section>
@@ -404,7 +470,6 @@
                 <div class="footer-logo-block">
                     <img src="./assets/svg/logo.svg" alt="" class="footer-logo">
                     <p class="footer-phone">+7 (495) 203-97-98</p>
-                    <p class="footer-rights">© Форт 2022. Все права защищены.</p>
                 </div>
                 <div class="footer-menu-block">
                     <ul class="footer-menu-list">
@@ -414,16 +479,27 @@
                         <li class="footer-menu-item"><a href="#about" class="footer-menu-link">О компании</a></li>
                         <li class="footer-menu-item"><a href="#contacts" class="footer-menu-link">Контакты</a></li>
                     </ul>
-                    <p class="footer-details">ООО “ЧОО “ФОРТ” ОГРН: 147746236263 ИНН: 7723901592 КПП: 772701001</p>
-                    <p class="footer-details">Юридический адрес: 117465, г. Москва, ул. Генерала Тюленева д. 4А стр 1</p>
                 </div>
                 <div class="footer-ya-block">
                     <img src="./assets/img/ya.png" alt="" class="ya-img">
+                </div>
+            </div>
+            <div class="footer-items-second-block">
+                <div class="footer-rights-block">
+                    <p class="footer-rights">© Форт 2022. Все права защищены.</p>
+                </div>
+                <div class="footer-details-block">
+                    <p class="footer-details">ООО “ЧОО “ФОРТ” ОГРН: 147746236263 ИНН: 7723901592 КПП: 772701001</p>
+                    <p class="footer-details">Юридический адрес: 117465, г. Москва, ул. Генерала Тюленева д. 4А стр 1</p>
+                </div>
+                <div class="footer-policy-block">
                     <p class="ya-policy-text"><a href="" class="ya-policy-link">Политика конфиденциальности</a></p>
                 </div>
             </div>
         </div>
     </footer>
-    <script src="./js/index.js"></script>
+    <script type="module" src="./js/index.js"></script>
+    <script src="./js/slider.js"></script>
+    <!-- <script type="module" src="./js/modal-slider.js"></script> -->
 </body>
 </html>
