@@ -1260,7 +1260,7 @@ tr:nth-child(1) {
 
 .faq-item-img-close {
     position: absolute;
-    top: 18px;
+    top: 5px;
     right: 0;
     cursor: pointer;
 }
@@ -1888,7 +1888,7 @@ ymaps {
     .menu-block {
         display: none;
         position: absolute;
-        top: 90px;
+        top: 89px;
         left: 0;
         right: 0;
         height: 100vh;
@@ -2458,14 +2458,15 @@ ymaps {
         width: 670px;
     }
 
-    .benefits-scrollbar-block::-webkit-scrollbar {
+    ::-webkit-scrollbar {
         height: 5px;
         background: rgba(253, 89, 30, 0.2);
         border-radius: 11px;
     }
 
-    .benefits-scrollbar-block::-webkit-scrollbar-thumb {
+    ::-webkit-scrollbar-thumb {
         background-color: var(--colorOrange);
+        border-radius: 11px;
     }
 
     .benefits-table {

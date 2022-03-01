@@ -49,7 +49,7 @@ const contactsForm = document.querySelector('.contacts-form');
 
 const menuBtn = document.querySelector('.hamburger');
 const menuBlock = document.querySelector('.menu-block');
-const navBtn = document.querySelector('.nav-btn');
+const menuItem = document.querySelectorAll('.menu-item');
 
 
 window.addEventListener('load', () => {
@@ -103,6 +103,16 @@ window.addEventListener('load', () => {
         } else {
             openMenuBtn(this);
         }
+    })
+
+    menuItem.forEach((item) => {
+        item.addEventListener('click', () => {
+            if(menuBtn.classList.contains('is-active')){
+                closeMenuBtn(menuBtn);
+            } else {
+                openMenuBtn(menuBtn);
+            }
+        })
     })
 })
 
