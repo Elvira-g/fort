@@ -65,7 +65,7 @@
                     <ul class="menu-list">
                         <li class="menu-item"><a href="#price" class="menu-item-link">Цены</a></li>
                         <li class="menu-item"><a href="#benefits" class="menu-item-link">Преимущества</a></li>
-                        <li class="menu-item"><a href="#" class="menu-item-link">Услуги</a></li>
+                        <li class="menu-item"><a href="#equipment" class="menu-item-link">Услуги</a></li>
                         <li class="menu-item"><a href="#about" class="menu-item-link">О компании</a></li>
                         <li class="menu-item"><a href="#contacts" class="menu-item-link">Контакты</a></li>
                     </ul>
@@ -92,11 +92,11 @@
         <section class="hero">
             <div class="hero-background"></div>
             <div class="container">
-                <h1 class="hero-title">Самая быстрая охрана квартир</h1>
+                <h1 class="hero-title">Вневедомственная охрана квартир, дома, бизнеса</h1>
                 <div class="hero-benefits-block">
                     <div class="hero-benefits-item">Стоимость от <span class="hero-benefits-text">890 ₽</span> в месяц</div>
                     <div class="hero-benefits-item">Определим ближайший к вам экипаж. Расчетное время прибытия от <span class="hero-benefits-text">5 мин</span></div>
-                    <div class="hero-benefits-item">Ответственность до <span class="hero-benefits-text">4 000 000 ₽</span> </div>
+                    <div class="hero-benefits-item">Ответственность до <span class="hero-benefits-text">1 000 000 ₽</span> </div>
                 </div>
                 <button class="btn-orange hero-btn call-btn">Оставить заявку</button>
             </div>
@@ -116,7 +116,7 @@
                         <svg class="banner-plus" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path opacity="0.5" d="M16.7669 15.413C16.9706 15.6167 17.0724 15.8543 17.0724 16.1258C17.1176 16.3973 17.0498 16.6236 16.8687 16.8046C16.6651 17.0083 16.4162 17.0988 16.122 17.0762C15.8505 17.0762 15.6129 16.9743 15.4093 16.7707L8.51922 9.88064L1.66311 16.7367C1.45947 16.9404 1.22188 17.0422 0.950352 17.0422C0.70145 17.0648 0.486489 16.9856 0.30547 16.8046C0.124451 16.6236 0.0339418 16.3973 0.0339415 16.1258C0.056569 15.8769 0.169706 15.6506 0.373352 15.447L7.22946 8.59088L0.339411 1.70083C0.135764 1.49718 0.0226272 1.24828 0 0.954123C0.0226274 0.659966 0.124451 0.422379 0.30547 0.24136C0.486489 0.0603399 0.70145 -0.0188563 0.950351 0.00377127C1.24451 0.0263992 1.49341 0.139536 1.69706 0.343182L8.58711 7.23323L15.4772 0.343182C15.6808 0.139536 15.9071 0.0263986 16.156 0.00377143C16.4501 -0.018855 16.6877 0.0603406 16.8687 0.24136C17.0498 0.422379 17.1176 0.648653 17.0724 0.920181C17.0724 1.19171 16.9706 1.4293 16.7669 1.63294L9.87687 8.52299L16.7669 15.413Z"/>
                         </svg></div>
-                    <div class="banner-item">Месяц охраныв подарок!</div>
+                    <div class="banner-item">Месяц охраны в подарок!</div>
                     <div class="banner-item"><button class="btn-orange banner-btn call-btn">Подключить бесплатно</button></div>
                 </div>
             </div>
@@ -184,7 +184,7 @@
                 </div> 
             </div>      
         </section>
-        <section class="equipment">
+        <section class="equipment" id="equipment">
             <div class="container">
                 <h2 class="section-title equipment-title">Оборудование</h2>
                 <div class="equipment-items-block">
@@ -407,6 +407,7 @@
                     <form class="call-form">
                         <input type="text" name="name" placeholder="ФИО" autocomplete="off">
                         <input type="tel" name="tel" placeholder="Мобильный телефон" autocomplete="off" class="tel">
+                        <div class="error"></div>
                         <p class="call-form-policy-text">Отправляя заявку, Вы даете согласие на обработку <a class="call-form-policy-link" href="#policy">персональных данных</a></p>
                         <button type="submit" class="btn-orange call-form-btn">Отправить</button>
                     </form>
@@ -445,16 +446,17 @@
                 </div>
             </div>
         </section>
-        <section class="contacts">
+        <section class="contacts" id="contacts">
             <div class="contacts-map-block">
                 <script type="text/javascript" charset="utf-8" async src="https://api-maps.yandex.ru/services/constructor/1.0/js/?um=constructor%3A235dd62218ccb34eb3c060068bf8b9df32e7a94fa3cd8cffeec0d7ebca325136&amp;width=100%25&amp;height=460&amp;lang=ru_RU&amp;scroll=false "></script>
             </div>
-            <div class="container" id="contacts">
+            <div class="container">
                 <div class="contacts-form-block">
                     <h2 class="section-title contacts-title">Нужна помощь в выборе охраны?</h2>
                     <form class="contacts-form">
                         <input type="text" name="name" placeholder="ФИО" autocomplete="off">
                         <input type="tel" name="tel" placeholder="Телефон" autocomplete="off" class="tel">
+                        <div class="error"></div>
                         <input type="email" name="email" placeholder="Email" autocomplete="off">
                         <p class="call-form-policy-text mobile-policy">Отправляя заявку, Вы даете согласие на обработку <a class="call-form-policy-link" href="#policy">персональных данных</a></p>
                         <button type="submit" class="btn-orange contacts-btn">Перезвоните мне</button>

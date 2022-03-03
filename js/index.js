@@ -43,13 +43,15 @@ const bannerClose = document.querySelector('.banner-close');
 
 const callForm = document.querySelector('.call-form');
 
-const tel = document.querySelector('.tel');
+const inputs = document.querySelectorAll('.tel');
 
 const contactsForm = document.querySelector('.contacts-form');
 
 const menuBtn = document.querySelector('.hamburger');
 const menuBlock = document.querySelector('.menu-block');
-const menuItem = document.querySelectorAll('.menu-item');
+const menuItem = document.querySelectorAll('.menu-item-link');
+
+const sections = document.querySelectorAll('section');
 
 
 window.addEventListener('load', () => {
@@ -63,21 +65,41 @@ window.addEventListener('load', () => {
         })
     })
 
+    menuBtn.addEventListener('click', function () {
+        if(this.classList.contains('is-active')){
+            closeMenuBtn(this);
+        } else {
+            openMenuBtn(this);
+        }
+    })
+
     contactModalClose.addEventListener('click', () => {
         contactModalWindow.style.animationName = 'modal-close';
         setTimeout(() => contactModal.style.display = 'none', 400);
     })
 
     callForm.addEventListener('submit', function(e) {
-    e.preventDefault();
-    contactModal.style.display = 'flex';
-    showMassage('Спасибо!');
+        const tel = callForm.querySelector('.tel');
+        const errorField = callForm.querySelector('.error');
+        e.preventDefault();
+        if (tel.value == '' || tel.value.length < 12) {
+            showError(errorField, 'Заполните поле');
+        } else {
+            contactModal.style.display = 'flex';
+            showMassage('Спасибо!'); 
+        }
     })
 
     contactsForm.addEventListener('submit', function(e) {
+        const tel = contactsForm.querySelector('.tel');
+        const errorField = contactsForm.querySelector('.error');
         e.preventDefault();
-        contactModal.style.display = 'flex';
-        showMassage('Спасибо!');
+        if (tel.value == '' || tel.value.length < 12) {
+            showError(errorField, 'Заполните поле');
+        } else {
+            contactModal.style.display = 'flex';
+            showMassage('Спасибо!'); 
+        }
     })
 
     equipmentModalClose.addEventListener('click', () => {
@@ -97,21 +119,25 @@ window.addEventListener('load', () => {
         bannerBlock.style.display = 'none';
     })
 
-    menuBtn.addEventListener('click', function () {
-        if(this.classList.contains('is-active')){
-            closeMenuBtn(this);
-        } else {
-            openMenuBtn(this);
-        }
+    menuItem.forEach((item) => {
+        item.addEventListener('click', (e) => {
+            e.preventDefault();
+            scrollToBlock(item);
+            if (screen.width <= 812) {
+                if(menuBtn.classList.contains('is-active')){
+                    closeMenuBtn(menuBtn);
+                } else {
+                    openMenuBtn(menuBtn);
+                }  
+            }
+            
+        })
     })
 
-    menuItem.forEach((item) => {
-        item.addEventListener('click', () => {
-            if(menuBtn.classList.contains('is-active')){
-                closeMenuBtn(menuBtn);
-            } else {
-                openMenuBtn(menuBtn);
-            }
+    inputs.forEach((input) => {
+        input.addEventListener('input', function(e){
+            e.preventDefault;
+            removeError(e.target);
         })
     })
 })
@@ -126,14 +152,24 @@ window.addEventListener('click', (e) => {
     }
 })
 
-
+function scrollToBlock(item) {
+    const link = item.attributes.href.value;
+    sections.forEach((section) => {
+        const id = `#${section.id}`;
+        if ( link == id ){
+            const height = section.offsetTop - 80;
+            window.scroll(0, height);
+        }
+    })
+}
 
 function showForm() {
     contactModalText.innerHTML = `
         <h2 class="modal-contact-title">Мы перезвоним вам!</h2>
         <form class="modal-contact-form">
-            <input type="text" name="name" placeholder="ФИО" autocomplete="off">
-            <input type="tel" name="tel" placeholder="Мобильный телефон" autocomplete="off" class="tel">
+            <input type="text" name="name" placeholder="Имя" autocomplete="off">
+            <input type="tel" name="tel" placeholder="Телефон *" autocomplete="off" class="tel">
+            <div class="error"></div>
             <input id="policy-checkbox" type="checkbox" name="checkbox">
             <label for="policy-checkbox" class="contact-checkbox-label">Я принимаю условия обработки персональных данных</label>
             <button type="submit" class="btn-orange modal-contact-btn">Отправить</button>
@@ -147,9 +183,17 @@ function showForm() {
         }
     }
     contactModalForm.addEventListener('submit', function(e) {
+        const tel = contactModalForm.querySelector('.tel');
+        const errorField = contactModal.querySelector('.error');
         e.preventDefault();
-        showMassage('Спасибо за заказ!');
+        if (tel.value == '' || tel.value.length < 12) {
+            showError(errorField, 'Заполните поле');
+        } else {
+           showMassage('Спасибо за заказ!'); 
+        }
+        
     })
+    
 
 }
 
@@ -319,6 +363,18 @@ function openMenuBtn(btn) {
     menuBlock.style.display = 'block';
     setTimeout(() => menuBlock.style.opacity = '1', 200);
     
+}
+
+
+function showError (field, message) {
+    field.innerHTML = message;
+}
+
+function removeError () {
+    const errors = document.querySelectorAll('.error');
+    errors.forEach((item) => {
+        item.innerHTML = '';
+    })
 }
 
 const phone_inputs = document.querySelectorAll('.tel');

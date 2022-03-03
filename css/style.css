@@ -121,6 +121,17 @@ button {
     color: var(--colorBlack)
 }
 
+.error {
+    text-align: center;
+    font-family: Nunito;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 16px;
+    color: var(--colorOrange);
+    height: 30px;
+}
+
+
 .modal-contact-block {
     position: fixed;
     top: 0;
@@ -189,6 +200,10 @@ button {
     color: var(--colorBlack);
     margin-bottom: 30px;
     box-sizing: border-box;
+}
+
+.modal-contact-form input:nth-child(2) {
+    margin-bottom: 0;
 }
 
 input[type="checkbox"]:checked,
@@ -508,6 +523,10 @@ input[type="checkbox"]:checked + label:after {
 
 .menu-item-link:hover {
     color: var(--colorOrange);
+}
+
+.nav-btn-mob {
+    display: none;
 }
 
 .call-block {
@@ -1202,6 +1221,10 @@ tr:nth-child(1) {
     color: var(--colorBlack);
 }
 
+.call-form input:nth-child(2) {
+    margin-bottom: 0;
+}
+
 ::placeholder {
     font-family: Nunito;
     font-weight: 600;
@@ -1419,6 +1442,7 @@ ymaps {
 }
 
 .contacts-form {
+    position: relative;
     display: flex;
     align-items: center;
     gap: 20px;
@@ -1436,6 +1460,12 @@ ymaps {
     line-height: 22px;
     border-bottom: 1px solid var(--colorLightGrey);
     box-sizing: border-box;
+}
+
+.contacts-form .error {
+    position: absolute;
+    top: 40px;
+    left: 270px;
 }
 
 .mobile-policy {
@@ -1812,6 +1842,16 @@ ymaps {
 
 @media (max-width: 812px) {
 
+    .contacts-form .error {
+        position: inherit;
+        width: 100%;
+        height: 30px;
+        top: 0;
+        left: 0;
+        padding-top: 10px;
+        box-sizing: border-box;
+    }
+
     .modal-contact-window {
         padding: 54px 32px 41px 33px;
     }
@@ -2116,10 +2156,17 @@ ymaps {
     .contacts-form {
         flex-wrap: wrap;
         justify-content: center;
+        gap: 0;
     }
 
     .contacts-form input {
         width: 100%;
+        margin-bottom: 30px;
+
+    }
+
+    .contacts-form input:nth-child(2) {
+        margin-bottom: 0;
     }
 
     .contacts-btn {
