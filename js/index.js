@@ -16,6 +16,16 @@ const faq = [
         id: '3',
         title: 'Сколько времени занимает монтаж системы?',
         text: 'Если устройств из данного комплекта недостаточно, то их можно увеличить. Для того чтобы рассчитать стоимость необходимого вам комплекта охраны мы предлагаем оставить ваши данные и наши специалисты свяжутся с вами и сделают расчет индивидуально. Мы рекомендуем воспользоваться бесплатным выездом инженера.',
+    },
+    {
+        id: '4',
+        title: 'Что будет, если я не оплачу абонентское обслуживание в необходимый срок?',
+        text: 'Если устройств из данного комплекта недостаточно, то их можно увеличить. Для того чтобы рассчитать стоимость необходимого вам комплекта охраны мы предлагаем оставить ваши данные и наши специалисты свяжутся с вами и сделают расчет индивидуально. Мы рекомендуем воспользоваться бесплатным выездом инженера.',
+    },
+    {
+        id: '5',
+        title: 'Сколько времени занимает монтаж системы?',
+        text: 'Если устройств из данного комплекта недостаточно, то их можно увеличить. Для того чтобы рассчитать стоимость необходимого вам комплекта охраны мы предлагаем оставить ваши данные и наши специалисты свяжутся с вами и сделают расчет индивидуально. Мы рекомендуем воспользоваться бесплатным выездом инженера.',
     }
 ]
 
@@ -115,9 +125,9 @@ window.addEventListener('load', () => {
         })
     })
 
-    bannerClose.addEventListener('click', () => {
-        bannerBlock.style.display = 'none';
-    })
+    // bannerClose.addEventListener('click', () => {
+    //     bannerBlock.style.display = 'none';
+    // })
 
     menuItem.forEach((item) => {
         item.addEventListener('click', (e) => {
@@ -156,9 +166,14 @@ function scrollToBlock(item) {
     const link = item.attributes.href.value;
     sections.forEach((section) => {
         const id = `#${section.id}`;
-        if ( link == id ){
-            const height = section.offsetTop - 80;
-            window.scroll(0, height);
+        if ( link == id ){ 
+            if ( link == '#contacts' ) {
+                const height = section.offsetTop - 280;
+                window.scroll(0, height);
+            } else {
+               const height = section.offsetTop - 60;
+               window.scroll(0, height);
+            }
         }
     })
 }
@@ -269,14 +284,14 @@ function showEquipment(id) {
             equipmentTitle.innerHTML = item.name;
             equipmentText.innerHTML = item.description.text;
             equipmentList.innerHTML = '';
-            equipmentSliderImage.innerHTML = '';
+            // equipmentSliderImage.innerHTML = '';
             let equip = item.description.equip;
             showEquipmentList(equip)
             let images = item.images;
-            showEquipmentSlider(images);
-            showModalEquipmentSlider(images);
-            changeSliderImage();
-            modalSlider();
+            // showEquipmentSlider(images);
+            // showModalEquipmentSlider(images);
+            // changeSliderImage();
+            // modalSlider();
         }
     }
 )}
