@@ -102,7 +102,8 @@ window.addEventListener('load', () => {
         if (tel.value == '' || tel.value.length < 12) {
             showError(errorField, 'Заполните поле');
         } else {
-            sendJSON();
+            contactModal.style.display = 'flex';
+            showMassage('Спасибо!');
         }
     })
 
@@ -155,38 +156,6 @@ window.addEventListener('click', (e) => {
         contactModal.style.display = 'none';
     }
 })
-
-function sendJSON() {
-    // с помощью jQuery обращаемся к элементам на странице по их именам
-    let name = contactsForm.querySelector('.name');
-    let phone = contactsForm.querySelector('.tel');
-    let email = contactsForm.querySelector('.email');
-    // а вот сюда мы поместим ответ от сервера
-    // let result = document.querySelector('.result');
-    // создаём новый экземпляр запроса XHR
-    let xhr = new XMLHttpRequest();
-    // адрес, куда мы отправим нашу JSON-строку
-    let url = "./form.php";
-    // открываем соединение
-    xhr.open("POST", url, true);
-    // устанавливаем заголовок — выбираем тип контента, который отправится на сервер, в нашем случае мы явно пишем, что это JSON
-    xhr.setRequestHeader("Content-Type", "application/json");
-    // когда придёт ответ на наше обращение к серверу, мы его обработаем здесь
-    xhr.onreadystatechange = function () {
-      // если запрос принят и сервер ответил, что всё в порядке
-      if (xhr.readyState === 4 && xhr.status === 200) {
-        // выводим то, что ответил нам сервер — так мы убедимся, что данные он получил правильно
-        contactModal.style.display = 'flex';
-        showMassage('Спасибо!');
-        console.log(this.responseText) 
-      }
-    };
-    // преобразуем наши данные JSON в строку
-    var data = JSON.stringify({ "name": name.value, "email": email.value, "phone": phone.value });
-    // когда всё готово, отправляем JSON на сервер
-    xhr.send(data);
-    console.log(data) 
-}
 
 function scrollToBlock(item) {
     const link = item.attributes.href.value;
