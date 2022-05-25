@@ -28,17 +28,17 @@
         <div class="container">
             <nav class="nav">
                 <div class="logo-block">
-                    <a href="index.html" class="logo-link">
+                    <a href="./index.php" class="logo-link">
                         <img class="logo-img" src="./assets/svg/logo.svg" alt="">
                     </a>
                 </div>
                 <div class="menu-block">
                     <ul class="menu-list">
-                        <li class="menu-item"><a href="./index.html#price" class="menu-item-link">Цены</a></li>
-                        <li class="menu-item"><a href="./index.html#benefits" class="menu-item-link">Преимущества</a></li>
-                        <li class="menu-item"><a href="./index.html#equipment" class="menu-item-link">Услуги</a></li>
-                        <li class="menu-item"><a href="./index.html#about" class="menu-item-link">О компании</a></li>
-                        <li class="menu-item"><a href="./index.html#contacts" class="menu-item-link">Контакты</a></li>
+                        <li class="menu-item"><a href="./index.php#price" class="menu-item-link">Цены</a></li>
+                        <!-- <li class="menu-item"><a href="./index.php#benefits" class="menu-item-link">Преимущества</a></li> -->
+                        <li class="menu-item"><a href="./index.php#equipment" class="menu-item-link">Услуги</a></li>
+                        <li class="menu-item"><a href="./index.php#about" class="menu-item-link">О компании</a></li>
+                        <li class="menu-item"><a href="./index.php#contacts" class="menu-item-link">Контакты</a></li>
                     </ul>
                     <div class="container">
                         <!-- <button class="btn-main call-btn nav-btn-mob">Заказать звонок</button> -->
@@ -119,7 +119,7 @@
                     <p class="footer-details">Юридический адрес: 117465, г. Москва, ул. Генерала Тюленева д. 4А стр 1</p>
                 </div> -->
                 <div class="footer-policy-block">
-                    <p class="ya-policy-text"><a href="./assets/policy.pdf" class="ya-policy-link">Политика конфиденциальности</a></p>
+                    <p class="ya-policy-text"><a href="policy.php" class="ya-policy-link">Политика конфиденциальности</a></p>
                 </div>
             </div>
         </div>

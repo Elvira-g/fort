@@ -1,4 +1,6 @@
 import equipment from './equipment.js';
+import amEquipment from './amEquipment.js';
+import translate from './translate.js';
 import modalSlider from './modal-slider.js';
 
 const faq = [
@@ -58,10 +60,79 @@ const menuItem = document.querySelectorAll('.menu-item-link');
 
 const sections = document.querySelectorAll('section');
 
+const langBtns = document.querySelectorAll('.lang-block-link');
+const langRu = document.querySelector('.lang-ru');
+const langAm = document.querySelector('.lang-am');
+const ratesBlock = document.querySelector('.todelete');
+const equipmentItem = document.querySelectorAll('.equipment-item');
+const benefitsFirstChild = document.querySelector('.hero-benefits-first-child');
+const formNames = document.querySelectorAll('.form-name-placeholder');
+const formTels = document.querySelectorAll('.form-tel-placeholder');
+const errors = document.querySelectorAll('.error');
+let lang = 'am';
+
+// function getLocalStorage() {
+//     if(localStorage.getItem('lang')) {
+//         lang = localStorage.getItem('lang');
+//     }
+//     getTranslate(lang);
+// }
+
+// function setLocalStorage() {
+//     localStorage.setItem('lang', lang);
+//   }
+// window.addEventListener('beforeunload', setLocalStorage)
+
+function getTranslate(lang) {
+    errors.forEach((item) => {
+        item.innerHTML = '';
+    })
+    if(lang === 'ru') {
+        document.querySelector("[data-lang='am']").classList.remove('active');
+        document.querySelector("[data-lang='ru']").classList.add('active');
+        ratesBlock.style.display = 'block';
+        benefitsFirstChild.style.width = '163px';
+        equipmentItem.forEach((item)=> {
+           item.style.padding = '38px 30px 30px 30px' 
+        })
+        formNames.forEach((item) => {
+            item.placeholder = 'Имя'
+        })
+        formTels.forEach((item) => {
+            item.placeholder = 'Телефон'
+        })
+        
+        // lang = 'ru';
+    }
+    if(lang === 'am') {
+        document.querySelector("[data-lang='am']").classList.add('active');
+        document.querySelector("[data-lang='ru']").classList.remove('active');
+        ratesBlock.style.display = 'none';
+        benefitsFirstChild.style.width = '205px';
+        equipmentItem.forEach((item)=> {
+            item.style.padding = '38px 20px 30px 20px' 
+         })
+         formNames.forEach((item) => {
+            item.placeholder = 'Անուն'
+        })
+        formTels.forEach((item) => {
+            item.placeholder = 'Հեռախոս'
+        })
+        // lang = 'am';
+    }
+    let data = document.querySelectorAll('[data-tr]');
+    data.forEach(function(item){
+        let attr = item.dataset.tr;
+        // console.log(translate[lang])
+        item.textContent = translate[lang][attr];
+    })
+}
 
 window.addEventListener('load', () => {
-    showFaq();
-    addFaqAction();
+    // showFaq();
+    // addFaqAction();
+    // getLocalStorage();
+    getTranslate(lang);
     contactBtn.forEach((item) => {
     item.addEventListener('click', () => {
         contactModalWindow.style.animationName = 'modal';
@@ -88,10 +159,22 @@ window.addEventListener('load', () => {
         const errorField = callForm.querySelector('.error');
         e.preventDefault();
         if (tel.value == '' || tel.value.length < 12) {
-            showError(errorField, 'Заполните поле');
+            if (lang == 'ru') {
+                showError(errorField, 'Заполните поле');   
+            } else {
+                showError(errorField, 'Լրացնել դաշտը'); 
+            }
+            
         } else {
-            contactModal.style.display = 'flex';
-            showMassage('Спасибо!'); 
+            NGRequest.setData(new FormData(e.currentTarget), {'success': (d) => {
+                    contactModal.style.display = 'flex';
+                    if (lang == 'ru') {
+                        showMassage('Спасибо!');   
+                    } else {
+                        showMassage('Շնորհակալություն'); 
+                    }
+                }, 'error': (e) => {alert('Что-то пошло не так!')}}, '/send_mail.php');
+            NGRequest.send();
         }
     })
 
@@ -100,10 +183,21 @@ window.addEventListener('load', () => {
         const errorField = contactsForm.querySelector('.error');
         e.preventDefault();
         if (tel.value == '' || tel.value.length < 12) {
-            showError(errorField, 'Заполните поле');
+            if (lang == 'ru') {
+                showError(errorField, 'Заполните поле');   
+            } else {
+                showError(errorField, 'Լրացնել դաշտը'); 
+            }
         } else {
-            contactModal.style.display = 'flex';
-            showMassage('Спасибо!');
+            NGRequest.setData(new FormData(e.currentTarget), {'success': (d) => {
+                    contactModal.style.display = 'flex';
+                    if (lang == 'ru') {
+                        showMassage('Спасибо!');   
+                    } else {
+                        showMassage('Շնորհակալություն'); 
+                    }
+                }, 'error': (e) => {alert('Что-то пошло не так!')}}, '/send_mail.php');
+            NGRequest.send();
         }
     })
 
@@ -117,6 +211,23 @@ window.addEventListener('load', () => {
             equipmentModalWindow.style.animationName = 'modal';
             equipmentModal.style.display = 'flex';
             showEquipment(item.dataset.equipment);
+        })
+    })
+
+    langBtns.forEach((item) => {
+        item.addEventListener('click', (e) => {
+            let setLang = e.target.dataset.lang;
+            if ( item.classList.contains('lang-active') ) {
+                lang = setLang;
+                getTranslate(lang);
+            } else {
+                langBtns.forEach((btn) => {
+                    btn.classList.remove('lang-active');
+                    item.classList.add('lang-active');
+                    lang = setLang;
+                    getTranslate(lang);
+                })
+            }
         })
     })
 
@@ -135,7 +246,6 @@ window.addEventListener('load', () => {
                     openMenuBtn(menuBtn);
                 }  
             }
-            
         })
     })
 
@@ -174,17 +284,32 @@ function scrollToBlock(item) {
 }
 
 function showForm() {
-    contactModalText.innerHTML = `
-        <h2 class="modal-contact-title">Мы перезвоним вам!</h2>
-        <form class="modal-contact-form">
-            <input type="text" name="name" placeholder="Имя" autocomplete="off">
-            <input type="tel" name="tel" placeholder="Телефон *" autocomplete="off" class="tel">
-            <div class="error"></div>
-            <input id="policy-checkbox" type="checkbox" name="checkbox">
-            <label for="policy-checkbox" class="contact-checkbox-label">Я принимаю условия обработки персональных данных</label>
-            <button type="submit" class="btn-orange modal-contact-btn">Отправить</button>
-        </form>
-    `;
+    if (lang == 'ru') {
+        contactModalText.innerHTML = `
+            <h2 class="modal-contact-title" data='modal-reply'>Мы перезвоним вам!</h2>
+            <form class="modal-contact-form">
+                <input type="text" name="name" placeholder="Имя" autocomplete="off">
+                <input type="tel" name="tel" placeholder="Телефон *" autocomplete="off" class="tel">
+                <div class="error"></div>
+                <input id="policy-checkbox" type="checkbox" name="checkbox">
+                <label for="policy-checkbox" class="contact-checkbox-label" data='modal-policy'>Я принимаю условия обработки персональных данных</label>
+                <button type="submit" class="btn-orange modal-contact-btn" data='send-btn'>Отправить</button>
+            </form>
+        `;
+    } else {
+        contactModalText.innerHTML = `
+            <h2 class="modal-contact-title" data='modal-reply'>Մենք ձեզ կզանգահարենք:</h2>
+            <form class="modal-contact-form">
+                <input type="text" name="name" placeholder="Անուն" autocomplete="off">
+                <input type="tel" name="tel" placeholder="Հեռախոս *" autocomplete="off" class="tel">
+                <div class="error"></div>
+                <input id="policy-checkbox" type="checkbox" name="checkbox">
+                <label for="policy-checkbox" class="contact-checkbox-label" data='modal-policy'>Ես ընդունում եմ անձնական տվյալների մշակման պայմանները</label>
+                <button type="submit" class="btn-orange modal-contact-btn" data='send-btn'>Ուղարկել</button>
+            </form>
+        `;
+    }
+    
     const contactModalForm = document.querySelector('.modal-contact-form');
     const phone_inputs = document.querySelectorAll('.tel');
     for (let elem of phone_inputs) {
@@ -197,22 +322,40 @@ function showForm() {
         const errorField = contactModal.querySelector('.error');
         e.preventDefault();
         if (tel.value == '' || tel.value.length < 12) {
-            showError(errorField, 'Заполните поле');
+            if ( lang == 'ru' ) {
+                showError(errorField, 'Заполните поле');  
+            } else {
+                showError(errorField, 'Լրացնել դաշտը'); 
+            }
         } else {
-           showMassage('Спасибо за заказ!'); 
+            NGRequest.setData(new FormData(e.currentTarget), {'success': (d) => {
+                    contactModal.style.display = 'flex';
+                    if ( lang == 'ru' ) {
+                        showMassage('Спасибо за заказ!');  
+                    } else {
+                        showMassage('Շնորհակալություն պատվերի համար'); 
+                    }
+                }, 'error': (e) => {alert('Что-то пошло не так!')}}, '/send_mail.php');
+            NGRequest.send();
         }
-        
     })
-    
-
 }
 
 function showMassage(message) {
-    contactModalText.innerHTML = `
-    <h2 class="modal-contact-title">${message}</h2>
-    <p class="section-text">Мы свяжемся с Вами в ближайшее время.</p>
-    <button class="btn-orange modal-contact-back-btn">Вернуться на главную</button>
-    `;
+    if (lang == 'ru') {
+        contactModalText.innerHTML = `
+        <h2 class="modal-contact-title">${message}</h2>
+        <p class="section-text" data='modal-reply-2'>Мы свяжемся с Вами в ближайшее время.</p>
+        <button class="btn-orange modal-contact-back-btn" data='modal-back'>Вернуться на главную</button>
+        `;
+    } else {
+        contactModalText.innerHTML = `
+        <h2 class="modal-contact-title">${message}</h2>
+        <p class="section-text" data='modal-reply-2'>Մենք կկապնվենք ձեր հետ առաջին հնարավորության դեպքում</p>
+        <button class="btn-orange modal-contact-back-btn" data='modal-back'>Վերադառնալ գլխավորին</button>
+        `;
+    }
+    
     const contactModalBackBtn = document.querySelector('.modal-contact-back-btn');
     contactModalBackBtn.addEventListener('click', () => {
         location.href='index.html';
@@ -274,22 +417,41 @@ function hideFaqText(id) {
 }
 
 function showEquipment(id) {
-    equipment.forEach((item) => {
-        if (item.id === id) {
-            equipmentTitle.innerHTML = item.name;
-            equipmentText.innerHTML = item.description.text;
-            equipmentList.innerHTML = '';
-            // equipmentSliderImage.innerHTML = '';
-            let equip = item.description.equip;
-            showEquipmentList(equip)
-            let images = item.images;
-            // showEquipmentSlider(images);
-            // showModalEquipmentSlider(images);
-            // changeSliderImage();
-            // modalSlider();
-        }
+    if ( lang == 'am' ) {
+        amEquipment.forEach((item) => {
+            if (item.id === id) {
+                equipmentTitle.innerHTML = item.name;
+                equipmentText.innerHTML = item.description.text;
+                equipmentList.innerHTML = '';
+                // equipmentSliderImage.innerHTML = '';
+                let equip = item.description.equip;
+                showEquipmentList(equip)
+                let images = item.images;
+                // showEquipmentSlider(images);
+                // showModalEquipmentSlider(images);
+                // changeSliderImage();
+                // modalSlider();
+            }
+        })
     }
-)}
+    if ( lang == 'ru' ) {
+        equipment.forEach((item) => {
+            if (item.id === id) {
+                equipmentTitle.innerHTML = item.name;
+                equipmentText.innerHTML = item.description.text;
+                equipmentList.innerHTML = '';
+                // equipmentSliderImage.innerHTML = '';
+                let equip = item.description.equip;
+                showEquipmentList(equip)
+                let images = item.images;
+                // showEquipmentSlider(images);
+                // showModalEquipmentSlider(images);
+                // changeSliderImage();
+                // modalSlider();
+            }
+        }) 
+    }
+}
 
 function showEquipmentList(equip) {
     for ( let i = 0; i < equip.length; i++) {

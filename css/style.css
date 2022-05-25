@@ -522,11 +522,53 @@ input[type="checkbox"]:checked + label:after {
 }
 
 .menu-item-link:hover {
-    color: var(--colorOrange);
+    color: var(--colorBlack);
 }
 
 .nav-btn-mob {
     display: none;
+}
+
+.lang-block {
+    cursor: pointer;
+    height: 20px;
+    box-sizing: border-box;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 5px;
+}
+
+.lang-block-link {
+    width: 25px;
+    box-shadow: -1px -1px 4px rgba(0, 0, 0, 0.15);
+    /* font-family: Raleway;
+    font-size: 16px;
+    line-height: 20px;
+    text-align: center; */
+    padding: 3px;
+    box-sizing: border-box;
+    border-radius: 50%;
+    color: var(--colorBlack);
+}
+
+.lang-block-span {
+    font-family: Raleway;
+    font-size: 16px;
+    line-height: 20px;
+    color: var(--colorBlack);
+}
+
+.lang-block-link:hover {
+    color: var(--colorOrange);
+}
+
+.lang-active {
+    border: 1px solid var(--colorOrange);
+}
+
+.active {
+    color: var(--colorOrange);
 }
 
 .call-block {
@@ -557,7 +599,7 @@ input[type="checkbox"]:checked + label:after {
     width: 100%;
     padding: 117px 0;
     box-sizing: border-box;
-    background-image: url(../assets/img/hero.jpg);
+    background-image: url(../assets/img/hero.png);
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
@@ -599,7 +641,13 @@ input[type="checkbox"]:checked + label:after {
     line-height: 24px;
     color: var(--colorWhite);
     box-sizing: border-box;
+}
 
+.hero-benefits-text-end {
+    font-family: Nunito;
+    font-size: 16px;
+    line-height: 24px;
+    color: var(--colorWhite);
 }
 
 .hero-benefits-item:nth-child(1) {
@@ -784,7 +832,7 @@ input[type="checkbox"]:checked + label:after {
     border-radius: 10px;
     text-align: center;
     width: 280px;
-    height: 233px;
+    min-height: 233px;
     padding: 31px 0 30px 0;
     box-sizing: border-box;
     cursor: pointer;
@@ -803,6 +851,7 @@ input[type="checkbox"]:checked + label:after {
     font-size: 22px;
     line-height: 26px;
     margin-bottom: 20px;
+    min-height: 52px;
 }
 
 .price-item-number-block {
@@ -900,7 +949,7 @@ tr:nth-child(1) {
     border-radius: 10px;
     box-sizing: border-box;
     width: 380px;
-    height: 526px;
+    min-height: 526px;
 }
 
 .equipment-item:hover {
@@ -934,12 +983,14 @@ tr:nth-child(1) {
     font-size: 22px;
     line-height: 26px;
     margin-bottom: 15px;
+    min-height: 52px;
 }
 
 .equipment-item-text {
     font-size: 16px;
     line-height: 22px;
     margin-bottom: 15px;
+    min-height: 44px;
     color: var(--colorDarkGrey);
 }
 
@@ -984,7 +1035,7 @@ tr:nth-child(1) {
     border: 1px solid var(--colorLightGrey);
     border-radius: 10px;
     width: 380px;
-    height: 380px;
+    min-height: 380px;
     padding: 30px 30px;
     box-sizing: border-box;
     cursor: pointer;
@@ -1008,6 +1059,7 @@ tr:nth-child(1) {
     font-size: 16px;
     line-height: 22px;
     margin-bottom: 30px;
+    min-height: 66px;
     color: var(--colorDarkGrey);
 }
 
@@ -1325,7 +1377,8 @@ tr:nth-child(1) {
 }
 
 .about {
-    padding: 100px 0 200px 0;
+    padding: 0 0 200px 0;
+    /* padding: 100px 0 200px 0; */
     box-sizing: border-box;
 }
 
@@ -2049,7 +2102,7 @@ ymaps {
     }
 
     .equipment-item-img {
-        height: 190px;
+        min-height: 190px;
     }
 
     .equipment-item-title {
@@ -2213,7 +2266,90 @@ ymaps {
 
 }
 
-@media (max-width: 375px) {
+@media (max-width: 713px) {
+    .hero-benefits-block {
+        flex-wrap: wrap;
+        width: 95%;
+        height: auto;
+        margin-bottom: 15px;
+    }
+
+    .hero-benefits-item {
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 26px;
+        min-width: 100%;
+        margin-bottom: 15px;
+    }
+
+    .hero-benefits-item:nth-child(1) {
+        padding-right: 0;
+    }
+
+    .hero-benefits-item:nth-child(2) {
+        padding: 0;
+        border: none;
+    }
+
+    .hero-benefits-item:nth-child(3) {
+        padding-left: 0;
+    }
+
+    .hero-btn {
+        width: 100%;
+    }
+}
+
+@media (max-width: 679px) {
+
+    .hero-title {
+        font-size: 36px;
+        line-height: 40px;
+        width: 100%;
+        margin-bottom: 30px;
+    }
+
+    .equipment-btn {
+        width: 100%;
+    }
+
+    .equipment-item-img {
+        height: auto;
+        width: 100%;
+    }
+
+    .benefits-item-btn {
+        width: 100%;
+    }
+
+    .equipment-items-block {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 30px;
+    }
+
+    .equipment-item {
+        width: 100%;
+        padding: 33px 24px 25px 22px;
+        height: auto;
+    }
+
+    .benefits-items-block {
+        gap: 20px;
+    }
+
+    .benefits-item {
+        width: 100%;
+        min-height: auto;
+        padding: 30px 24px 24px 23px;
+    }
+
+    .footer-menu-list {
+        display: none;
+    }
+}
+
+@media (max-width: 414px) {
 
     .modal-contact-window {
         width: 95%;
@@ -2321,6 +2457,14 @@ ymaps {
         display: block;
         margin-top: 40px;
         width: 100%;
+    }
+
+    .lang-block {
+        margin-left: 10px;
+    }
+
+    .call-block {
+        margin-right: 15px;
     }
 
     .container {
@@ -2492,7 +2636,7 @@ ymaps {
 
     .benefits-item {
         width: 100%;
-        height: auto;
+        min-height: auto;
         padding: 30px 24px 24px 23px;
     }
 
@@ -2791,7 +2935,15 @@ ymaps {
         margin-bottom: 10px;
         width: 100%;
     }
-
-
     
+}
+
+@media (max-width: 375px) {
+    
+    .header .container {
+        padding: 0 15px 0 17px;
+    }
+    .logo-block {
+        width: 90px;
+    }
 }

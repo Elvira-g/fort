@@ -69,4 +69,4 @@ const equipment = [
     }
 ]
 
-export default equipment;
+export default equipment
